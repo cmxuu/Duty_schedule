@@ -6,7 +6,6 @@
     <title>醫生出診追蹤系統</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Alpine.js - 超輕量、免編譯、載入極快 -->
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -16,6 +15,7 @@
         [x-cloak] { display: none !important; }
         .font-mono { font-family: 'JetBrains Mono', monospace; }
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); }
+        button, input, select, textarea { touch-action: manipulation; }
     </style>
 </head>
 <body class="bg-[#F5F5F5] text-zinc-900" x-data="dutyApp()" x-init="init()" x-cloak>
@@ -361,7 +361,7 @@
 
                 addDoctor() {
                     const id = Date.now();
-                    this.doctors.push({ id, name: '新醫師', color: '#3b82f6', recurring_days: [] });
+                    this.doctors.unshift({ id, name: '新醫師', color: '#3b82f6', recurring_days: [] });
                     this.save();
                     this.editingNameId = id;
                     this.tempName = '';
